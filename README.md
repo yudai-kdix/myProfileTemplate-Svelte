@@ -1,38 +1,82 @@
-# sv
+# myProfileTemplate-Svelte
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+## 概要
 
-## Creating a project
+sveltekitを使って、自己紹介サイトを作るレポジトリです。
+とりあえずフォークして、GitHub PagesとGitHub Actionの設定をすれば https://{自分のGitHubアカウント名}.GitHub.io/{フォークした時のレポジトリ名}/ で自己紹介サイトを公開することができます。
 
-If you're seeing this, you've probably already done this step. Congrats!
+## 手順(初回)
 
-```bash
-# create a new project in the current directory
-npx sv create
+1. GitHubのアカウントを作成
+1. GitHub Educationの申請
+1. 公開鍵の作成・登録
+1. myProfileTemplate-Svelte レポジトリのfork
+1. GitHub Pages の設定
+1. GitHub Action の設定
+1. svelte.config.jsを修正する
 
-# create a new project in my-app
-npx sv create my-app
-```
+### GitHubのアカウントを作成
 
-## Developing
+後日追記
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+### GitHub Educationの申請
 
-```bash
-npm run dev
+後日追記
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-To create a production version of your app:
+### 公開鍵の作成・登録
 
 ```bash
-npm run build
+$ ssh-keygen -t rsa -b 4096 -C "自分のメールアドレス"
+# エンターを連打
+$ cat ~/.ssh/id_rsa.pub
+# 出てきた文字列をコピーする
 ```
 
-You can preview the production build with `npm run preview`.
+1. GitHubをブラウザで開いてアイコンをクリックする。
+1. Setting を押す。
+1. SSH and GPG keys をクリックする。
+1. New SSH Key を押して、タイトルを設定、コピーした内容を貼り付けて保存する。
 
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+### myProfileTemplate-Svelte レポジトリのfork
+
+後日追記
+
+### GitHub Pages の設定
+
+1. 上部のメニューから　Settings へ移動する。
+1. 左のメニューから、Pages へ移動する。
+1. Build and deployment の下のセレクトボックスを GitHub Actions に変更する。
+
+### GitHub Actions の設定
+
+1. 上部のメニューから　Actions へ移動する。
+1. 緑のボタンを押す。
+
+### aaa
+
+svelte.config.js のレポジトリのパスを自身がフォークの際に設定したレポジトリ名に修正する。
+
+```js
+// svelte.config.js
+// 例は、レポジトリ名は myProfileTemplate-Svelte となっている。
+paths: {
+            base: production ? '/myProfileTemplate-Svelte' : '',
+        }
+```
+
+GitHubにプッシュする。
+
+```bash
+$ git add .
+$ git commit -m "feat: change base path"
+$ git push origin main
+```
+
+## 手順(開発)
+
+```bash
+$ git pull origin main
+$ git add .
+$ git commit -m "コミットメッセージ"
+$ git push origin main
+```
